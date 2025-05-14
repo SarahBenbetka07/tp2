@@ -8,7 +8,12 @@ def lire_csv(chemin):
     Lire un fichier CSV et retourner la liste des lignes.
     Chaque dictionnaire correspond à une ligne du fichier.
     """
-    pass
+    lignes = []
+    with open(chemin, newline='', encoding='utf-8') as fichier:
+        lecteur_csv = csv.reader(fichier)
+        for ligne in lecteur_csv:
+            lignes.append(ligne)
+    return lignes
 
 def sauvegarder_json(data, chemin):
     """
@@ -17,7 +22,8 @@ def sauvegarder_json(data, chemin):
     - chemin : chemin du fichier JSON à écrire
     Utiliser json.dump avec indentation pour que le fichier soit lisible.
     """
-    pass
+    with open(chemin, 'w', encoding='utf-8') as fichier_json:
+        json.dump(data, fichier_json, indent=4, ensure_ascii=False)
 
 def ecrire_texte(contenu, chemin):
     """
@@ -25,4 +31,5 @@ def ecrire_texte(contenu, chemin):
     - contenu : texte à écrire
     - chemin : chemin du fichier texte à créer
     """
-    pass
+    with open(chemin, 'w', encoding='utf-8') as fichier:
+        fichier.write(contenu)
